@@ -10,4 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends EloquentUser
 {
 
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
 }

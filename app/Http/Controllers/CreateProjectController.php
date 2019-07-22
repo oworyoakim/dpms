@@ -14,11 +14,12 @@ class CreateProjectController extends Controller
     {
         $user = Sentinel::getUser();
 
-        $project = Project::create([
+        $project = $user->projects()->create([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'image' => $request->get('image'),
-            'user_id' => $user->id,
         ]);
+
+        return response()->json($project);
     }
 }

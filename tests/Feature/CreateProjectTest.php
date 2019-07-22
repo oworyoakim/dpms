@@ -19,7 +19,6 @@ class CreateProjectTest extends TestCase
 
     public function a_project_can_be_created()
     {
-
         $user = Sentinel::registerAndActivate([
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
@@ -62,7 +61,7 @@ class CreateProjectTest extends TestCase
 
         Sentinel::authenticate($user);
 
-        $this->post('/projects', Arr::except($this->data(),['title']));
+        $this->post('/projects', Arr::except($this->data(), ['title']));
 
         $this->assertCount(0, Project::all());
     }
