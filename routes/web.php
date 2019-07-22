@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('default');
 });
+
+Route::group(['middleware' => 'ensure.authenticated'], function () {
+    Route::post('/projects', 'CreateProjectController@store');
+});
+
+
