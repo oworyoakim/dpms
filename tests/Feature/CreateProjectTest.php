@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Project;
+use App\Traits\FakeData;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateProjectTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase, WithFaker, FakeData;
 
     /**
      * @test
@@ -19,20 +20,15 @@ class CreateProjectTest extends TestCase
 
     public function a_project_can_be_created()
     {
-        $user = Sentinel::registerAndActivate([
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'test123',
-        ]);
+        $user = Sentinel::registerAndActivate($this->userData());
 
         Sentinel::authenticate($user);
 
-        $response = $this->post('/projects', $this->data());
+        $response = $this->post('/projects', $data = $this->projectData());
 
         $response->assertOk();
         $this->assertCount(1, Project::all());
-        $this->assertEquals($this->data()['title'], Project::first()->title);
+        $this->assertEquals($data['title'], Project::first()->title);
     }
 
     /**
@@ -40,7 +36,7 @@ class CreateProjectTest extends TestCase
      */
     public function only_authenticated_users_can_create_a_project()
     {
-        $response = $this->post('/projects', $this->data());
+        $response = $this->post('/projects', $this->projectData());
 
         $this->assertCount(0, Project::all());
         $response->assertRedirect('/login');
@@ -52,36 +48,12 @@ class CreateProjectTest extends TestCase
      */
     public function a_project_title_is_required()
     {
-        $user = Sentinel::registerAndActivate([
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'test123',
-        ]);
+        $user = Sentinel::registerAndActivate($this->userData());
 
         Sentinel::authenticate($user);
 
-        $this->post('/projects', Arr::except($this->data(), ['title']));
+        $this->post('/projects', Arr::except($this->projectData(), ['title']));
 
         $this->assertCount(0, Project::all());
-    }
-
-    private function data()
-    {
-        /*
-        return [
-            'name' => 'Project Title',
-            'image' => '',
-            'user_id' => '',
-            'description' => 'Some description',
-            'status' => 'pending',
-            'complete' => 0,
-        ];
-        */
-        return [
-            'title' => 'Project Title',
-            'description' => 'Some description text',
-            'image' => '',
-        ];
     }
 }

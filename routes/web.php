@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'ensure.authenticated'], function () {
     Route::post('/projects', 'CreateProjectController@store');
+    Route::put('/projects/{project}', 'UpdateProjectController@update');
 });
 
 
