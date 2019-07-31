@@ -23,6 +23,11 @@ Route::group(['middleware' => 'ensure.authenticated'], function () {
     Route::get('/projects', 'ListProjectsController@index');
     Route::post('/projects', 'CreateProjectController@store');
     Route::put('/projects/{project}', 'UpdateProjectController@update');
+    // users
+    Route::get('/list-users', 'ListUsersController@listUsers');
+    Route::get('/users', 'ListUsersController@index');
+    Route::post('/users', 'CreateUserController@store');
+    Route::put('/users/{user}', 'UpdateUserController@update');
     // roles
     Route::get('/roles', 'ListRolesController@index');
     Route::post('/roles', 'CreateRoleController@store');
