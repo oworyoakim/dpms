@@ -18,6 +18,7 @@ Route::get('/login','AccountController@login');
 Route::post('/login','AccountController@processLogin');
 
 Route::group(['middleware' => 'ensure.authenticated'], function () {
+    Route::get('/', 'HomeController@index');
     Route::post('/logout', 'AccountController@logout');
     Route::get('/user-info', 'HomeController@userInfo');
     // projects
