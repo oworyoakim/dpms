@@ -25,6 +25,7 @@ Route::group(['middleware' => 'ensure.authenticated'], function () {
     Route::put('/projects/{project}', 'UpdateProjectController@update');
     // roles
     Route::get('/roles', 'ListRolesController@index');
+    Route::post('/roles', 'CreateRoleController@store');
 });
 
 
