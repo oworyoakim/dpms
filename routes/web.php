@@ -31,6 +31,10 @@ Route::group(['middleware' => 'ensure.authenticated'], function () {
     // roles
     Route::get('/roles', 'ListRolesController@index');
     Route::post('/roles', 'CreateRoleController@store');
+
+    // settings
+    Route::get('/settings', 'SettingsController@index');
+    Route::post('/settings', 'SettingsController@update');
 });
 
 
