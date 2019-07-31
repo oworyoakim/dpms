@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('default');
-});
+Route::get('/login','AccountController@login');
+Route::post('/login','AccountController@processLogin');
 
 Route::group(['middleware' => 'ensure.authenticated'], function () {
+    Route::post('/logout', 'AccountController@logout');
+    Route::get('/user-info', 'HomeController@userInfo');
+    // projects
     Route::get('/list-projects', 'ListProjectsController@listProjects');
     Route::get('/projects', 'ListProjectsController@index');
     Route::post('/projects', 'CreateProjectController@store');
