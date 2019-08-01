@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ISettingRepository;
 use App\Setting;
 use Illuminate\Http\Request;
 use Exception;
@@ -10,11 +11,25 @@ use Illuminate\Support\Arr;
 
 class SettingsController extends Controller
 {
+    /**
+     * @var ISettingRepository
+     */
+    private $repository;
+
+    /**
+     * SettingsController constructor.
+     * @param ISettingRepository $repository
+     */
+    public function __construct(ISettingRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
         try
         {
-            $settings = Setting::all()->flatMap(function (Setting $setting) {
+            $settings = $this->repository->all()->flatMap(function ($setting) {
                 $data[$setting->setting_key] = $setting->setting_value;
                 return  $data;
             })->toJson();
@@ -35,9 +50,7 @@ class SettingsController extends Controller
             //dd($data);
             foreach ($data as $key => $value)
             {
-                $setting = Setting::query()->firstOrNew(['setting_key' => $key]);
-                $setting->setting_value = $value;
-                $setting->save();
+                $this->repository->set($key,$value);
             }
             return response()->json('Settings saved!');
         } catch (Exception $ex)
