@@ -27,30 +27,30 @@
                                 <v-toolbar-title>New User</v-toolbar-title>
                             </v-toolbar>
                             <v-card-text>
-                                <v-container grid-list-md>
+                                <v-container grid-list-lg>
                                     <v-layout wrap>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="First Name*"
                                                 v-model="form.first_name"
                                                 required
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="Last Name*"
                                                 v-model="form.last_name"
                                                 required
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="Email Address"
                                                 v-model="form.email"
                                                 type="email"
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-select
                                                 :items="roles"
                                                 label="Role*"
@@ -59,14 +59,14 @@
                                                 v-model="form.role_id"
                                             ></v-select>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="Username*"
                                                 v-model="form.username"
                                                 required
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="Password*"
                                                 type="password"
@@ -74,7 +74,7 @@
                                                 required
                                             ></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12>
+                                        <v-flex xl4 lg6 md6 sm6 xs12>
                                             <v-text-field
                                                 label="Confirm Password*"
                                                 type="password"

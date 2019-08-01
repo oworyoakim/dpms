@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-navigation-drawer v-model="drawer" app>
-            <v-list dense>
+        <v-navigation-drawer v-model="drawer" app dark color="indigo">
+            <v-list dark color="indigo">
                 <v-list-item>
                     <v-list-item-avatar>
                         <img src="https://randomuser.me/api/portraits/men/81.jpg">

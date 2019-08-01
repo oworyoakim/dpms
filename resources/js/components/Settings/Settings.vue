@@ -12,16 +12,22 @@
                 <h3>Settings</h3>
             </v-card-title>
             <v-card-text>
-                <v-flex xs12>
-                    <v-text-field
-                        label="Company Name"
-                        v-model="form.company_name"
-                    ></v-text-field>
-                    <v-text-field
-                        label="Company Email"
-                        v-model="form.company_email"
-                    ></v-text-field>
-                </v-flex>
+                <v-container grid-list-lg>
+                    <v-layout wrap>
+                        <v-flex md6 xs12>
+                            <v-text-field
+                                label="Company Name"
+                                v-model="form.company_name"
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex md6 xs12>
+                            <v-text-field
+                                label="Company Email"
+                                v-model="form.company_email"
+                            ></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
