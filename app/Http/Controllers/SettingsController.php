@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ISettingRepository;
-use App\Setting;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Http\Response;
