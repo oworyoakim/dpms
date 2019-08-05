@@ -34,4 +34,12 @@ trait FakeData
             'image' => $this->faker->imageUrl(),
         ];
     }
+    private function taskData()
+    {
+        return [
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'due_date' => Carbon::now()->addDays($this->faker->numberBetween(5,100))->toDateString(),
+        ];
+    }
 }

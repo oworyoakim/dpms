@@ -26,7 +26,6 @@ class ListRolesTest extends TestCase
      */
     public function authenticated_users_can_see_roles_list()
     {
-        $this->withoutExceptionHandling();
         $user = Sentinel::registerAndActivate($this->userData());
 
         Sentinel::authenticate($user);

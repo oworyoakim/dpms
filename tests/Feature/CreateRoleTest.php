@@ -21,7 +21,6 @@ class CreateRoleTest extends TestCase
      */
     public function only_authenticated_users_can_create_a_role()
     {
-        $this->withoutExceptionHandling();
         $data = $this->roleData();
         $response = $this->post('/roles', $data);
 
