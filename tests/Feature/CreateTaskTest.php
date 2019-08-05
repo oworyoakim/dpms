@@ -6,7 +6,6 @@ use App\Project;
 use App\Task;
 use App\Traits\FakeData;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Illuminate\Support\Arr;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,7 +55,6 @@ class CreateTaskTest extends TestCase
      */
     public function a_valid_project_id_is_required_to_create_a_task()
     {
-        $this->withoutExceptionHandling();
         $user = Sentinel::registerAndActivate($this->userData());
         Sentinel::authenticate($user);
         $data = array_merge($this->taskData(), ['project_id' => random_int(1,10)]);

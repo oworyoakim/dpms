@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 trait FakeData
